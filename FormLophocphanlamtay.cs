@@ -27,17 +27,12 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
         String[] tenbien = { "bachoc", "tenkh", "tenng", "tenct", "namvao", "malophoc", "tenmon" };
         List<String> dieukien = new List<String>();
 
-
-
-
         public Form1()
         {
-
 
             InitializeComponent();
 
         }
-
       
         public void comboBox3_DropDown(object sender, EventArgs e)
         {
@@ -54,8 +49,6 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             { comboBox3.Items.Add(dr1.GetString(0)); }
             dr1.Close();
             
-
-
         }
 
         public void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,6 +87,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             while (dr3.Read())
             { comboBox5.Items.Add(dr3.GetString(0)); }
             dr3.Close();
+            
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,6 +108,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             while (dr4.Read())
             { comboBox6.Items.Add(dr4.GetString(0)); }
             dr4.Close();
+            
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,6 +130,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             while (dr5.Read())
             { comboBox7.Items.Add(dr5.GetInt32(0)); }
             dr5.Close();
+            
         }
 
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +153,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             while (dr6.Read())
             { comboBox8.Items.Add(dr6.GetString(0)); }
             dr6.Close();
+            
         }
 
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,6 +177,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             while (dr7.Read())
             { comboBox9.Items.Add(dr7.GetString(0)); }
             dr7.Close();
+            
         }
         public void khoacontrol()
         {
@@ -192,6 +190,7 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             comboBox9.Enabled = false;
 
         }
+        
         public void mocontrol()
         { comboBox3.Enabled = true;
             comboBox4.Enabled = true;
@@ -200,7 +199,9 @@ ON C.malophoc=LHP.malophoc) AS D ON D.mamon=MH.mamon) AS E) as I WHERE @X IS NOT
             comboBox7.Enabled = true; 
             comboBox8.Enabled = true;
             comboBox9.Enabled = true;
+            
         }
+        
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (textBox1.Text.Trim() !=null)
