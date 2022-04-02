@@ -15,80 +15,45 @@ namespace QLLHP
     public partial class ctdt : Form
     {
         SqlConnection sc = new SqlConnection("data source =LAPTOP-CG9B8T7E\\SQLEXPRESS; initial catalog =QLSV; User ID =sa; Password =nhom5");
-        //ArrayList mahp = new ArrayList();
-        //ArrayList mon = new ArrayList();
-        //ArrayList sotc = new ArrayList();
-        //ArrayList dstq = new ArrayList();
-        //ArrayList dsmt = new ArrayList();
-        //ArrayList khoa = new ArrayList();
-        //ArrayList gv = new ArrayList(); 
-        //ArrayList sohk = new ArrayList();
-
-        public void chendulieu(string hedt, string khoa, string nganh, string ct)
+        SqlDataAdapter sda = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand();
+        DataSet dslhp = new DataSet();
+        public void chendulieu(string hedt, string khoa, string nganh, string ct, string nam, string lop)
         {
             textBox1.Text = hedt;
             textBox2.Text = khoa;
             textBox3.Text = nganh;
             textBox4.Text = ct;
+            textBox5.Text = nam;
+            textBox6.Text = lop;
         }
-        public  ctdt(string ct)
+        public ctdt(string ct, string nam)
         {
-           
+
             InitializeComponent();
-            sc.Open();
-            SqlCommand cmd = new SqlCommand(
-   "select malophp, mh.tenmon, mh.sotc, mh.dsmontienquyet, mh.dsmontruoc, kh.tenkh, gv.tengv, sohk, lh.mact, ct.tenct, lh.malophoc " +
-   "from((LOPHOCPHAN lhp join MONHOC mh ON lhp.mamon = mh.mamon) Join(GIAOVIEN gv  join KHOA kh ON gv.makh = kh.makh) ON lhp.magv = gv.magv) " +
-   "join(LOPHOC lh   Join CHUONGTRINH ct ON lh.mact = ct.mact) ON lhp.malophoc = lh.malophoc where ct.tenct=N'" + ct +"'", sc);
-            SqlDataReader sdr = cmd.ExecuteReader();
-            int i = 0;
-            while (sdr.Read())
-            {
-                
-                i = i + 1;
-                string stt = i.ToString();
-                string mahp = sdr.GetString(0).Trim();
-                string mon = sdr.GetString(1).Trim();
-                string sotc = sdr.GetInt32(2).ToString().Trim();
-                string dstq = sdr.GetString(3);
-                string dsmt = sdr.GetString(4);
-                string kh = sdr.GetString(5);
-                string gv = sdr.GetString(6);
-                string sohk = sdr.GetString(7);
-
-                string[] row = new string[9] { stt, mahp, mon, sotc, dstq, dsmt, kh, gv, sohk };
-                dataGridView1.Rows.Add(row);
-
-            }
-
-            sc.Close();
-
-            }
-       
-        private void label1_Click(object sender, EventArgs e)
-        {
+            DataGrid(ct, nam);
 
         }
+        public void DataGrid(string ct, string nam)
+        {
+            sc.Open();
+            DataTable dtable = new DataTable();
+            sda = new SqlDataAdapter(
+   "select ctmh.sohk  , malophp , mh.tenmon , mh.sotc, mh.dsmontienquyet , mh.dsmontruoc , kh.tenkh , gv.tengv " +
+   "from(((LOPHOCPHAN lhp join MONHOC mh ON lhp.mamon = mh.mamon) Join(GIAOVIEN gv  join KHOA kh ON gv.makh = kh.makh) ON lhp.magv = gv.magv) " +
+   "join(LOPHOC lh   Join CHUONGTRINH ct ON lh.mact = ct.mact) ON lhp.malophoc = lh.malophoc) Join CHUONGTRINHMONHOC ctmh ON ctmh.mact=lh.mact and lhp.mamon=ctmh.mamon  " +
+   " where ct.tenct=N'" + ct + "'" + "and namvao=N'" + nam + "' ORDER BY ctmh.sohk ASC", sc);
+            sda.Fill(dtable);
+            dataGridView2.DataSource = dtable;
+            sc.Close();
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -109,13 +74,20 @@ namespace QLLHP
         }
         private void button1_Click(object sender, EventArgs e)
         {
-           
-                Form3 f = new Form3();
-                f.Show();
-          
+            themLHP f = new themLHP(textBox4.Text);
+            f.chendulieu(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            f.Show();
+            
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGrid(textBox4.Text,textBox5.Text);
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
