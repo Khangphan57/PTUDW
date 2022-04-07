@@ -1,0 +1,8 @@
+create proc [dbo].[SP_ThemGV]
+@MaGV nvarchar(50),
+@TenGV nvarchar(50),
+@MaKH nvarchar(50)
+as
+begin
+    insert into Giaovien values (@MaGV,@TenGV,@MaKH)
+end
