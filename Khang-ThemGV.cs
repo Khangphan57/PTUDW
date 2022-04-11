@@ -8,36 +8,30 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 namespace QLLHP
-public bool KTThongTin()
+    public bool KTThongTin()
         {
-            if(txtMaGV.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập tên giáo viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtTen.Focus();
-                return false;
-            }
-            if (TenGV.Text == "")
+            if (txtTenGV.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập tên giáo viên ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTenGV.Focus();
+                return false;
+            }
+            if (txtEmail.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập email", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtEmail.Focus();
                 return false;
             }
-            if (Email.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập email", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSDT.Focus();
-                return false;
-            }
-           if (MaKH.Text == "")
+            if (txtMaKH.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập mã khoa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSDT.Focus();
+                txtMaKH.Focus();
                 return false;
             }
-           if (lathinhgiang.Text == "")
+            if (txtLaTG.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập thỉnh giảng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSDT.Focus();
+                txtLaTG.Focus();
                 return false;
             }
             return true;
