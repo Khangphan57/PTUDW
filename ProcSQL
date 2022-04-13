@@ -1,8 +1,29 @@
 create proc [dbo].[SP_ThemGV]
-@MaGV nvarchar(50),
+@MaKH nvarchar(50),
 @TenGV nvarchar(50),
-@MaKH nvarchar(50)
+@Email nvarchar(50)
+@LaTG nvarcar(50),
 as
 begin
-    insert into Giaovien values (@MaGV,@TenGV,@MaKH)
+    insert into Giaovien values (@MaGV,@TenGV,@MaKH,@LaTG)
 end
+create proc [dbo].[SP_ThemLopHoc]
+@MaCT nvarchar(50),
+@NamVao nvarchar(50),
+@Loai nvarchar(50),
+as
+begin
+    insert into lophoc values (@MaCT,@NamVao,@Loai)
+end
+
+create proc [dbo].[SP_ThemChuongTrinh]
+@TenCT nvarchar(50),
+@BacHoc nvarchar(50),
+@Mang nvarchar(50),
+@MaKH nvarchar(50),
+@TongSGK nvarchar(50),
+as
+begin
+    insert into chuongtrinh values (@TenCT,@BacHoc,@Mang,@MaKH,@TóngSHK)
+end
+
